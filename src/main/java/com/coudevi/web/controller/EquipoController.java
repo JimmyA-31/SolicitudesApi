@@ -25,7 +25,7 @@ public class EquipoController {
     }
 
     @DeleteMapping("/{id}")
-    void eliminar(@PathVariable Long id) {
+    public void eliminar(@PathVariable Long id) {
         service.eliminar(id);
     }
 }
