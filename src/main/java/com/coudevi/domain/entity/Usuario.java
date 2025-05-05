@@ -20,7 +20,7 @@ public class Usuario {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_usuario")
     private Long id;
-    @Column(name = "nombre_completo",nullable = false, length = 100)
+    @Column(name = "nombre_completo",nullable = false, length = 100, unique = true)
     private String nombre;
     @Column(nullable = false, length = 50)
     private String correo;
@@ -32,7 +32,11 @@ public class Usuario {
     @ManyToOne
     @JoinColumn(name = "id_area")
     private Area area;
-
+    @JoinTable(
+            name="user_roles",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "role_name")
+    )
     private Set<Rol> roles;
 
 }
