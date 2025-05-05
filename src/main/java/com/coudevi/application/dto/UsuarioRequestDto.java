@@ -9,6 +9,5 @@ public class UsuarioRequestDto {
     private String nombre;
     private String correo;
     private String contrasena;
-    private Long idRol;
     private Long idArea;
 }

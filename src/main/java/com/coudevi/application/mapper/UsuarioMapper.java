@@ -15,18 +15,25 @@ public class UsuarioMapper {
                 .nombre(usuario.getNombre())
                 .correo(usuario.getCorreo())
                 .contrasena(usuario.getContrasena())
-                .nombreRol(usuario.getRol().getNombre())
                 .nombreArea(usuario.getArea().getNombre())
                 .build();
     }
 
-    public Usuario toEntity(UsuarioRequestDto requestDto, Rol rol, Area area){
+    public Usuario toEntity(UsuarioRequestDto requestDto, Area area){
         return Usuario.builder()
                 .nombre(requestDto.getNombre())
                 .correo(requestDto.getCorreo())
                 .contrasena(requestDto.getContrasena())
-                .rol(rol)
                 .area(area)
+                .build();
+    }
+
+    public Usuario toEntityUsuario(UsuarioResponseDto usuarioResponseDto) {
+        return Usuario.builder()
+                .id(usuarioResponseDto.getId())
+                .nombre(usuarioResponseDto.getNombre())
+                .correo(usuarioResponseDto.getCorreo())
+                .contrasena(usuarioResponseDto.getContrasena())
                 .build();
     }
 }

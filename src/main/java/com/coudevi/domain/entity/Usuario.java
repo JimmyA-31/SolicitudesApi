@@ -24,11 +24,8 @@ public class Usuario {
     private String nombre;
     @Column(nullable = false, length = 50)
     private String correo;
-    @Column(nullable = false, length = 50)
+    @Column(nullable = false, length = 60)
     private String contrasena;
-    @ManyToOne
-    @JoinColumn(name = "id_rol")
-    private Rol rol;
     @ManyToOne
     @JoinColumn(name = "id_area")
     private Area area;

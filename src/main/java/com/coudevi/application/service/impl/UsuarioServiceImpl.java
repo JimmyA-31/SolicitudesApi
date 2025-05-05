@@ -34,13 +34,11 @@ public class UsuarioServiceImpl implements IUsuarioService {
 
     @Override
     public UsuarioResponseDto guardar(UsuarioRequestDto requestDto) {
-        RolResponseDto rolResponseDto = rolService.obtenerRol(requestDto.getIdRol());
-        Rol rol = rolMapper.toEntityRol(rolResponseDto);
 
         AreaResponseDto areaResponseDto = areaService.obtenerArea(requestDto.getIdArea());
         Area area = areaMapper.toEntityArea(areaResponseDto);
 
-        Usuario usuario = mapper.toEntity(requestDto, rol, area);
+        Usuario usuario = mapper.toEntity(requestDto, area);
 
         return mapper.toDto(repository.save(usuario));
     }

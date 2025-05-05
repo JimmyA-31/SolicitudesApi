@@ -10,6 +10,5 @@ public class UsuarioResponseDto {
     private String nombre;
     private String correo;
     private String contrasena;
-    private String nombreRol;
     private String nombreArea;
 }
