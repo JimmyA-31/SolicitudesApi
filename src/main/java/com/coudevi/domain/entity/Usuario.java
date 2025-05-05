@@ -6,6 +6,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.Set;
+
 @Entity
 @Table(name = "usuario")
 @NoArgsConstructor
@@ -30,5 +32,7 @@ public class Usuario {
     @ManyToOne
     @JoinColumn(name = "id_area")
     private Area area;
+
+    private Set<Rol> roles;
 
 }
