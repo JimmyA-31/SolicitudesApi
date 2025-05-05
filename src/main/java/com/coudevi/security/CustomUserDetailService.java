@@ -17,7 +17,7 @@ public class CustomUserDetailService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String nombre) throws UsernameNotFoundException {
-        Usuario user = repository.findByUsername(nombre)
+        Usuario user = repository.findByNombre(nombre)
                 .orElseThrow(() -> new UsernameNotFoundException("Usuario no registrado"));
         return new User(
                 user.getNombre(),

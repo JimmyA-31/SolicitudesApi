@@ -32,11 +32,11 @@ public class Usuario {
     @ManyToOne
     @JoinColumn(name = "id_area")
     private Area area;
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
             name="user_roles",
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "role_name")
     )
     private Set<Rol> roles;
-
 }
