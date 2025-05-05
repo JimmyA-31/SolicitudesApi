@@ -12,7 +12,6 @@ public class SolicitudResponseDto {
     private String nombreUsuario;
     private LocalDate fechaInicio;
     private LocalDate fechaFin;
-    private Integer diasSolicitados;
     private String motivo;
     private String estado;
     private String observaciones;

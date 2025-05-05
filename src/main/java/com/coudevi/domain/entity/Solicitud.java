@@ -26,8 +26,6 @@ public class Solicitud {
     private LocalDate fechaInicio;
     @Column(name="fecha_fin", nullable = false)
     private LocalDate fechaFin;
-    @Column(name="dias_solicitados", nullable = false)
-    private Integer diasSolicitados;
     @Column(nullable = false, length = 100)
     private String motivo;
     @Column(nullable = false, length = 20)
