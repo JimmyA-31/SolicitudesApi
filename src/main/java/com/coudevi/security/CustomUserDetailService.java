@@ -23,7 +23,7 @@ public class CustomUserDetailService implements UserDetailsService {
                 user.getNombre(),
                 user.getContrasena(),
                 user.getRoles().stream()
-                        .map(r -> new SimpleGrantedAuthority(r.getNombre()))
+                        .map(r -> new SimpleGrantedAuthority(r))
                         .toList()
         );
 
