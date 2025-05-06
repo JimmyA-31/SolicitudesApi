@@ -23,7 +23,7 @@ public class CustomUserDetailService implements UserDetailsService {
                 user.getNombre(),
                 user.getContrasena(),
                 user.getRoles().stream()
-                        .map(r -> new SimpleGrantedAuthority(r))
+                        .map(SimpleGrantedAuthority::new)// roles como autoridades
                         .toList()
         );
 
