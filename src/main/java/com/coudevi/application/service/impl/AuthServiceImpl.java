@@ -1,5 +1,6 @@
 package com.coudevi.application.service.impl;
 
+import com.coudevi.application.dto.BaseResponseDto;
 import com.coudevi.application.dto.LoginRequest;
 import com.coudevi.application.dto.LoginResponse;
 import com.coudevi.application.service.IAuthService;
@@ -21,7 +22,10 @@ public class AuthServiceImpl implements IAuthService {
     private final UserDetailsService userDetailsService;
     private final JwtUtil jwtUtil;
     @Override
-    public LoginResponse authenticate(LoginRequest loginRequest) {
+    public BaseResponseDto<LoginResponse> authenticate(LoginRequest loginRequest) {
+        BaseResponseDto<LoginResponse> response = new BaseResponseDto<>();
+        response.setSuccess(true);
+        response.setMessage("Credenciales correctas.");
         try {
             authenticationManager.authenticate(
                     new UsernamePasswordAuthenticationToken(
@@ -34,8 +38,7 @@ public class AuthServiceImpl implements IAuthService {
 
             String token = jwtUtil.generateToken(user);
             long expiration = jwtUtil.extractExpiration(token).getTime();
-
-            return LoginResponse.builder()
+            var res = LoginResponse.builder()
                     .token(token)
                     .username(user.getUsername())
                     .roles(user.getAuthorities().stream()
@@ -43,11 +46,16 @@ public class AuthServiceImpl implements IAuthService {
                             .toList())
                     .expirateAt(expiration)
                     .build();
+
+            response.setData(res);
         } catch (BadCredentialsException e) {
-            throw new RuntimeException("Credenciales incorrectas", e);
+            response.setSuccess(false);
+            response.setMessage("Credenciales incorrectas");
         } catch (Exception e) {
-            throw new RuntimeException("Error al autenticar el usuario", e);
+            response.setSuccess(false);
+            response.setMessage("Error al autenticar el usuario");
         }
+        return response;
     }
 }
 
