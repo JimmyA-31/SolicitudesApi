@@ -2,6 +2,7 @@ package com.coudevi.web.controller;
 
 import com.coudevi.application.dto.RolRequestDto;
 import com.coudevi.application.dto.RolResponseDto;
+import com.coudevi.application.dto.UsuarioResponseDto;
 import com.coudevi.application.service.IRolService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
@@ -27,5 +28,10 @@ public class EquipoController {
     @DeleteMapping("/{id}")
     public void eliminar(@PathVariable Long id) {
         service.eliminar(id);
+    }
+
+    @GetMapping("/{id}")
+    public RolResponseDto obtenerRol(@PathVariable Long id){
+        return service.obtenerRol(id);
     }
 }

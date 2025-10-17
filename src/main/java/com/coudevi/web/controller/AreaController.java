@@ -2,6 +2,7 @@ package com.coudevi.web.controller;
 
 import com.coudevi.application.dto.AreaRequestDto;
 import com.coudevi.application.dto.AreaResponseDto;
+import com.coudevi.application.dto.RolResponseDto;
 import com.coudevi.application.service.IAreaService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
@@ -27,5 +28,10 @@ public class AreaController {
     @DeleteMapping("/{id}")
     public void eliminar(@PathVariable Long id) {
         service.eliminar(id);
+    }
+
+    @GetMapping("/{id}")
+    public AreaResponseDto obtenerArea(@PathVariable Long id){
+        return service.obtenerArea(id);
     }
 }
