@@ -10,4 +10,6 @@ public interface ISolicitudService {
     SolicitudResponseDto guardar(SolicitudRequestDto requestDto);
     void eliminar(Long id);
     SolicitudResponseDto obtenerSolicitud(Long id);
+    SolicitudResponseDto actualizar(SolicitudRequestDto requestDto);
+
 }

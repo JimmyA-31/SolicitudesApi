@@ -8,6 +8,7 @@ import java.time.LocalDate;
 @Data
 @Builder
 public class SolicitudRequestDto {
+    private Long id;
     private Long idUsuario;
     private LocalDate fechaInicio;
     private LocalDate fechaFin;

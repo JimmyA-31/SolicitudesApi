@@ -55,4 +55,24 @@ public class SolicitudServiceImpl implements ISolicitudService {
                 .map(mapper::toDto)
                 .orElseThrow(() -> new RuntimeException("No hay solicitud con el id : " + id));
     }
-}
+
+    @Override
+    public SolicitudResponseDto actualizar(SolicitudRequestDto requestDto) {
+// 1️⃣ Verificar existencia
+        if (!repository.existsById(requestDto.getId())) {
+            throw new RuntimeException("No existe la solicitud con el ID: " + requestDto.getId());
+        }
+
+        // 2️⃣ Obtener usuario
+        UsuarioResponseDto usuarioResponseDto = serviceUsuario.obtenerUsuario(requestDto.getIdUsuario());
+        Usuario usuario = mapperUsuario.toEntityUsuario(usuarioResponseDto);
+
+        // 3️⃣ Mapear el DTO a entidad (ya con los datos actualizados)
+        Solicitud solicitudActualizada = mapper.toEntity(requestDto, usuario);
+        solicitudActualizada.setId(requestDto.getId()); // aseguramos que tenga el ID correcto
+
+        // 4️⃣ Guardar y retornar
+        return mapper.toDto(repository.save(solicitudActualizada));
+    }
+    }
+

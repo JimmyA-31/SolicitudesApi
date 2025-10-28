@@ -33,4 +33,11 @@ public class SolicitudController {
     public SolicitudResponseDto obtenerSolicitud(@PathVariable Long id){
         return service.obtenerSolicitud(id);
     }
+
+    @PutMapping("/{id}")
+    public SolicitudResponseDto actualizar(@PathVariable Long id, @RequestBody SolicitudRequestDto requestDto) {
+        requestDto.setId(id); // asegúrate que tu DTO tenga este campo
+        return service.actualizar(requestDto);
+    }
+
 }
